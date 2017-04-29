@@ -1,0 +1,62 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+        <param name="plugin-banner">images/pluginBanner.png</param> <!-- 1120 x 548px PNG/JPG -->
+        <param name="vendor-icon">images/vendorIcon.png</param>     <!-- 16x16px PNG/JPG/GIF -->
+        <param name="vendor-logo">images/vendorLogo.png</param>     <!-- 72x72px PNG/JPG/GIF -->
+        <param name="atlassian-data-center-compatible">true</param>
+        <param name="post.install.url">/plugins/servlet/rightrepo/gettingstarted</param>
+    </plugin-info>
+
+    <resource type="i18n" name="i18n" location="rightrepo"/>
+    
+    <web-resource key="rightrepo-resources" name="Create Branch Repository Selector web resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="rightrepo.css" location="/css/rightrepo.css"/>
+        <resource type="download" name="images/" location="/images"/>
+        <context>rightrepo</context>
+    </web-resource>
+
+    <commit-indexer key="right-repo-commit-indexer" class="ch.mibex.stash.rightrepo.idx.RightRepoCommitIndexer"/>
+
+    <servlet-filter name="Repository selector servlet filter" key="righrepo-selector-filter"
+                    class="ch.mibex.stash.rightrepo.RepoSelectorServletFilter" location="before-dispatch" weight="200">
+        <description>Used to inject the repository ID for the create branch form when coming from JIRA</description>
+        <url-pattern>/plugins/servlet/create-branch</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </servlet-filter>
+
+    <servlet-filter name="Getting started servlet filter" key="rightrepo-getting-started-filter"
+                    class="ch.mibex.stash.rightrepo.GettingStartedServletFilter"
+                    location="before-dispatch" weight="200">
+        <description>Forwards in the UPM to the provided documentation url</description>
+        <url-pattern>/plugins/servlet/rightrepo/gettingstarted</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <init-param>
+            <param-name>documentationUrl</param-name>
+            <param-value>https://mibexsoftware.atlassian.net/wiki/display/REPOSELECT/Usage</param-value>
+        </init-param>
+    </servlet-filter>
+    
+    <!-- our components -->
+    <component key="plugin-lifecycle-handler" class="ch.mibex.stash.rightrepo.idx.PluginLifecycleHandler" public="true">
+        <interface>com.atlassian.sal.api.lifecycle.LifecycleAware</interface>
+    </component>
+    <component key="initial-commit-analysis-job-runner"
+               class="ch.mibex.stash.rightrepo.idx.InitialCommitAnalysisJobRunner"/>
+    <component key="jira-project-commit-indexer" class="ch.mibex.stash.rightrepo.idx.JiraProjectCommitIndexer"/>
+    <component key="repo-for-jira-key-finder" class="ch.mibex.stash.rightrepo.RepoForJiraKeyFinder"/>
+
+    <!-- import from the product container -->
+    <component-import key="applicationLinkService" interface="com.atlassian.applinks.api.ApplicationLinkService"/>
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+    <component-import key="jiraKeyScanner" interface="com.atlassian.integration.jira.JiraKeyScanner"/>
+    <component-import key="pluginSettingsFactory"
+                      interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+    <component-import key="transactionTemplate" interface="com.atlassian.sal.api.transaction.TransactionTemplate" />
+
+</atlassian-plugin>

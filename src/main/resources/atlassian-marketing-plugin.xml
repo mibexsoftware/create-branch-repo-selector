@@ -1,0 +1,14 @@
+<atlassian-plugin-marketing>
+    <compatibility>
+        <product name="bitbucket" min="4.0.0" max="5.0.0"/>
+    </compatibility>
+    <logo image="images/pluginLogo.png"/> <!-- 144 x 144px PNG/JPG transparent. Marketplace automatically creates an add-on icon from your logo. -->
+    <banner image="images/pluginBanner.png"/> <!-- Include your add-on name, your vendor name, and brief text about your add-on's functionality. 1120 x 548px PNG/JPG for high-resolution images or 560 x 274px PNG/JPG for standard images -->
+    <highlights>
+        <!-- Full-size highlight: 1840 x 900px PNG/JPG or 920 x 450px PNG/JPG for standard images; Cropped highlight: 580 x 330px PNG/JPG -->
+        <highlight image="images/highlights/create-branch.png" cropped="images/highlights/create-branch-cropped.png"/>
+        <highlight image="images/highlights/lru-repo.png" cropped="images/highlights/lru-repo-cropped.png"/>
+        <highlight image="images/highlights/repo-from-jira-project.png" cropped="images/highlights/repo-from-jira-project-cropped.png"/>
+    </highlights>
+    <screenshots/>
+</atlassian-plugin-marketing>
