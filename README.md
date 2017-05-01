@@ -2,7 +2,7 @@
 
 ![Travis build status](https://travis-ci.org/mibexsoftware/create-branch-repo-selector.svg?branch=master)
 
-For more information, please see our [Atlassian Marketplace listing](https://marketplace.atlassian.com/plugins/ch.mibex.stash.rightrepo/server/overview).
+For more information, please visit our [Atlassian Marketplace listing](https://marketplace.atlassian.com/plugins/ch.mibex.stash.rightrepo/server/overview).
 
 
 ## Motivation
@@ -10,7 +10,7 @@ The basic workflow this add-on contributes to is when you start creating a branc
 
 ![JIRA development panel with create branch link](src/main/resources/images/highlights/create-branch.png)
 
-This action forwards you to Bitbucket Servers "Create branch" dialog:
+This action forwards you to Bitbucket Server's "Create branch" dialog:
 
 ![Bitbucket Server's create branch dialog](src/main/resources/images/highlights/lru-repo.png)
 
@@ -32,3 +32,4 @@ We also have a YouTube video explaining this add-ons' functionality:
 
 ## Download
 You can download this add-on from the [Atlassian Marketplace](https://marketplace.atlassian.com/plugins/ch.mibex.stash.rightrepo/versions).
+
