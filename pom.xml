@@ -22,7 +22,7 @@
     <packaging>atlassian-plugin</packaging>
 
     <properties>
-        <bitbucket.version>4.0.0</bitbucket.version>
+        <bitbucket.version>5.0.0</bitbucket.version>
         <bitbucket.data.version>${bitbucket.version}</bitbucket.data.version>
         <amps.version>6.2.11</amps.version>
         <scala.version>2.11.7</scala.version>
